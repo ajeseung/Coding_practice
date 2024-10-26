@@ -1,0 +1,8 @@
+filetomake: simple_int_set message_book
+
+simple_int_set:
+	g++ -o simple_int_set simple_int_set_main.cc simple_int_set.cc -std=c++11
+message_book:
+	g++ -o message_book message_book_main.cc message_book.cc
+clean:
+	rm simple_int_set message_book
