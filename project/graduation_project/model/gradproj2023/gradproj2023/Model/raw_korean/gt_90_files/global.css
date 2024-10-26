@@ -1,0 +1,451 @@
+/* ****************
+        Fonts
+****************** */
+@font-face {
+    font-family: 'Unify Sans';
+    src: url('https://cpt-static.gannettdigital.com/universal-web-client/master/latest/gallium/themes/assets/universal/fonts/UnifySans_W_Rg.woff2') format('woff2'),
+            url('https://cpt-static.gannettdigital.com/universal-web-client/master/latest/gallium/themes/assets/universal/UnifySans_W_Rg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Unify Sans';
+    src: url('https://cpt-static.gannettdigital.com/universal-web-client/master/latest/gallium/themes/assets/universal/fonts/UnifySans_W_SBd.woff2') format('woff2'),
+            url('https://cpt-static.gannettdigital.com/universal-web-client/master/latest/gallium/themes/assets/universal/UnifySans_W_SBd.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'Unify Sans';
+    src: url('https://cpt-static.gannettdigital.com/universal-web-client/master/latest/gallium/themes/assets/universal/fonts/UnifySans_W_Bd.woff2') format('woff2'),
+            url('https://cpt-static.gannettdigital.com/universal-web-client/master/latest/gallium/themes/assets/universal/UnifySans_W_Bd.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-weight: 900;
+}
+@font-face {
+    font-family: 'Unify Serif';
+    src: url('https://cpt-static.gannettdigital.com/universal-web-client/master/latest/gallium/themes/assets/universal/fonts/UnifySerif_W_Rg.woff2') format('woff2'),
+            url('https://cpt-static.gannettdigital.com/universal-web-client/master/latest/gallium/themes/assets/universal/UnifySerif_W_Rg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Unify Serif';
+    src: url('https://cpt-static.gannettdigital.com/universal-web-client/master/latest/gallium/themes/assets/universal/fonts/UnifySerif_W_SBd.woff2') format('woff2'),
+            url('https://cpt-static.gannettdigital.com/universal-web-client/master/latest/gallium/themes/assets/universal/UnifySerif_W_SBd.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'Unify Serif';
+    src: url('https://cpt-static.gannettdigital.com/universal-web-client/master/latest/gallium/themes/assets/universal/fonts/UnifySerif_W_Bd.woff2') format('woff2'),
+            url('https://cpt-static.gannettdigital.com/universal-web-client/master/latest/gallium/themes/assets/universal/UnifySerif_W_Bd.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-weight: 900;
+}
+html {
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+/****** End Fonts ******/
+
+/* ****************
+        Global
+****************** */
+html body {
+    background-color: #f8f8f8;
+    margin: 0;
+}
+section.page-main-content-container .primary {
+    background-color: #fff;
+    max-width: 900px;
+    margin: 0 auto;
+}
+section.page-main-content-container .primary .content-well {
+    padding: 20px 0 32px;
+}
+section.page-main-content-container .primary .content-well article {
+    margin: 0 auto;
+    width: 83.33333333%;
+}
+/** Story Assets/Promo Top Table Images **/
+.asset-image .image-image img, .top-table .promo-image img {
+    margin: 0 -10%;
+    width: 100vw;
+}
+@media all and (min-width: 640px) {
+    .asset-image .image-image img, .top-table .promo-image img {
+        margin: 0;
+        width: 100%;
+    }
+}
+
+/****** End Global ******/
+
+/* ****************
+        Banner
+****************** */
+body .banner {
+    background-color: #009bff;
+    color: #fff;
+    font-family: 'Unify Sans', Helvetica, Arial, sans-serif;
+    font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1200 - 320)));
+    width: 100%;
+}
+body .banner .content {
+    align-items: center;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 16px 0;
+    width: 83.33333333%;
+}
+body .banner h3 {
+    flex: 1 0 50%;
+    font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1200 - 320))); /* type 6 */
+    margin: 0;
+}
+body .banner a {
+    box-sizing: border-box;
+    border: solid 2px #fff;
+    color: #fff;
+    font-weight: 600;
+    margin-left: 32px;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+body .banner a:hover {
+    background-color: #fff;
+    color: #009bff;
+}
+
+@media all and (min-width: 768px) {
+    body .banner a {
+        font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1200 - 320)));
+    }
+}
+
+/****** End Global ******/
+
+/* ****************
+        Header
+****************** */
+header {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    font-family: 'Unify Sans', Helvetica, Arial, sans-serif;
+    font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1200 - 320)));
+    padding: 14px 0;
+    position: -webkit-sticky;  
+    position:         sticky;
+    top: 0;
+    z-index: 2;
+}
+header img { 
+    display: block;
+    height: 32px;
+    margin: 0 auto;
+}
+header .navigation-bar {
+    position: relative;
+}
+
+@media all and (min-width: 768px) {
+    header {
+        padding: 20px 0;
+    }
+    header img { 
+        height: 40px;
+        margin: 0 auto;
+    }
+}
+/****** End Header ******/
+
+/* ****************
+        Footer
+****************** */
+footer {
+    background-color: #f8f8f8;
+    font-family: 'Unify Sans', Helvetica, Arial, sans-serif;
+    font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1200 - 320)));
+    height: 123px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+footer .content {
+    margin: 28px auto 26px auto;
+    width: 83.33333333%;
+}
+footer .content a {
+    color: #444444;
+    display: inline-block;
+    line-height: 2;
+    text-decoration: none;
+}
+footer .content a:after {
+    content: '•';
+    margin: 0 10px;
+}
+footer .content a:last-of-type:after {
+    content: none;
+}
+footer .content .copyright {
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 12px;
+    margin-top: 12px;
+}
+@media all and (min-width: 768px) {
+    footer .content {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        margin-top: 24px;
+    }
+    footer .content a {
+        line-height: 1.15;
+    }
+    footer .content .copyright {
+        flex: 1 1 auto;
+    }
+    footer .content .footer-links {
+        flex: 1 1 75%;
+    }
+    footer .content .copyright {
+        align-items: center;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        margin-top: 0;
+        text-align: right;
+    }
+}
+/****** End Footer ******/
+
+/* ********************************
+        Article & Static Pages
+*********************************** */
+/** Headline Styles **/
+h1.title, h1.page-title {
+    color: rgba(0, 0, 0, 0.87);
+    font-family: 'Unify Sans', Helvetica, Arial, sans-serif;
+    font-size: calc(24px + (34 - 24) * ((100vw - 320px) / (1200 - 320)));
+    line-height: 1.16;
+    margin: 0;
+}
+h1.title:after, h1.page-title:after {
+    background-color: #009bff;
+    content: "";
+    display: block;
+    height: 8px;
+    margin: 16px 0 20px;
+    width: 50px;
+}
+@media all and (min-width: 768px) {
+    h1.title {
+        font-size: calc(28px + (40 - 28) * ((100vw - 320px) / (1200 - 320)));
+    }
+}
+/** Article Body Styles **/
+div.article-wrapper, div.article-wrapper p, div.article-wrapper a {
+    color: rgba(0, 0, 0, 0.73);
+    line-height: 1.6;
+}
+div.article-wrapper p {
+    font-family: 'Unify Serif', Georgia, TimesNewRoman, "Times New Roman", Times, serif;
+    font-size: calc(16px + (18 - 16) * ((100vw - 320px) / (1200 - 320)));
+}
+div.article-wrapper .section-label{
+    background-color: #404040;
+    display: inline-block;
+    color: #fff;
+    font-family: 'Unify Sans', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    text-transform: uppercase;
+}
+/** Presto Headers **/
+h1.presto-h1, h2.presto-h2, h3.presto-h3, h4.presto-h4, h5.presto-h5, h6.presto-h6 {
+    font-family: 'Unify Sans', Helvetica, Arial, sans-serif;
+    font-size: calc(18px + (22 - 18) * ((100vw - 320px) / (1200 - 320)));
+}
+/** Byline - Author and Publication **/
+.byline-section .attribution {
+    color: rgba(0, 0, 0, 0.73);
+    font-family: 'Unify Sans', Helvetica, Arial, sans-serif;
+    font-size: calc(16px + (18 - 16) * ((100vw - 320px) / (1200 - 320)));;
+    line-height: 1.2;
+}
+.byline-section .attribution .author {
+    font-weight: 600;
+}
+.byline-section .attribution .publication:before {
+    content: "|";
+    margin: 0 5px;
+}
+/** Byline - Date **/
+.byline-section .publish-date, .footer-publish-date {
+    color: rgba(0, 0, 0, 0.6);
+    font-family: 'Unify Serif', Georgia, TimesNewRoman, "Times New Roman", Times, serif;
+    line-height: 1.2;
+}
+.byline-section {
+    margin-bottom: 24px;
+}
+/** Asset Image **/
+.asset-image .image-meta {
+    color: rgba(0, 0, 0, 0.6);
+    font-family: 'Unify Sans', Helvetica, Arial, sans-serif;   
+}
+
+.asset-image .image-meta .image-caption {
+    font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1200 - 320)));
+}
+.asset-image .image-meta .image-credit {
+    font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1200 - 320)));
+}
+
+/** Story Links/Embed Links/Front Links (Just in case)/Static Links**/
+p span a, p a, .top-table:hover .promo-text .headline, .main-items a:hover .promo-text .headline{
+    box-shadow: inset 0 -0.063em #fff, inset 0 -0.156em #009bff;
+    display: inline;
+    font-weight: 600;
+    text-shadow: 0.063em 0.063em #fff,
+                -0.063em 0.063em #fff,
+                 0.125em 0       #fff,
+                -0.125em 0       #fff;
+}
+/****** End Article and Static Pages ******/
+
+
+/* ****************
+        Fronts
+****************** */
+/* Top Table */
+.top-table a, .main-items a  { 
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    text-decoration: none;
+}
+.top-table a {
+    flex-flow: column;
+    margin: -20px 0 0;
+}
+.top-table:hover .promo-text .headline, .top-table .promo-text .headline {
+    color:rgba(0, 0, 0, 0.87);
+    font-family: 'Unify Sans', Helvetica, Arial, sans-serif;
+    font-size: calc(20px + (28 - 20) * ((100vw - 320px) / (1200 - 320)));
+    font-weight: 600;
+}
+.top-table .promo-text {
+    background-color: #fff;
+    margin-left: -10%;
+    padding: 16px 32px 0 10%;
+    position: relative;
+    top: -32px;
+    width: 91.66666667%;
+}
+@media all and (min-width: 640px){
+    .top-table a {
+        flex-flow: row nowrap;
+        margin: -20px -10% 32px;
+    }
+    .top-table .promo-text {
+        background-color: #fff;
+        height: 100%;
+        padding: 24px;
+        position: relative;
+        top: 24px;
+    }
+    .top-table .promo-image {
+        flex: 1 0 66.66666667%;
+    }   
+}
+.promo-text .timestamp {
+    color: rgba(0, 0, 0, 0.6);
+    font-family: 'Unify Sans', Helvetica, Arial, sans-serif;
+    font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1200 - 320)));
+    margin-top: 8px;
+}
+.main-items a {
+    justify-content: space-between;
+    margin: 0 auto 16px;
+}
+.main-items a .promo-text {
+    flex-basis: 66.66666667%;
+}
+.main-items a .promo-text .headline {
+    color: rgba(0, 0, 0, 0.87);
+    font-family: 'Unify Sans', Helvetica, Arial, sans-serif;
+    font-size: calc(16px + (18 - 16) * ((100vw - 320px) / (1200 - 320)));;
+    font-weight: 600;
+}
+.main-items a .promo-image picture, .main-items a .promo-image picture img {
+    width: 100%;
+}
+@media all and (min-width: 480px) {	
+    .main-items a .promo-text .headline {	
+        font-size: calc(18px + (22 - 18) * ((100vw - 320px) / (1200 - 320)));	
+    }	
+}
+@media all and (min-width: 768px) {
+    .main-items a {
+        margin: 0 auto 28px;
+    }
+}
+/****** End Fronts ******/
+
+/* ********************
+        Static Pages
+*********************** */
+/* https://local-eu.usatoday.com/EU-learn-more/ */
+p {
+    color: rgba(0, 0, 0, 0.73);
+    font-family: 'Unify Sans', Helvetica, Arial, sans-serif;
+    font-size:  calc(14px + (16 - 14) * ((100vw - 320px) / (1200 - 320)));
+}
+.cm-main-content, .cm-content h3, .cm-content a {
+    color: rgba(0, 0, 0, 0.73);
+    font-family: 'Unify Sans', Helvetica, Arial, sans-serif !important;
+    font-size:  calc(14px + (16 - 14) * ((100vw - 320px) / (1200 - 320)));
+}
+.cm-main-content h3 {
+    font-weight: 600;
+    font-size:  calc(14px + (16 - 14) * ((100vw - 320px) / (1200 - 320)));
+}
+.cm-main-content b {
+    font-weight: 400;
+}
+.cm-main-content a {
+    color: rgba(0, 0, 0, 0.73);
+    text-decoration: none;
+    
+}
+/* last updated */
+.cm-main-content p:first-of-type {
+    font-style: italic;
+}
+.cm-main-content p {
+    margin: 0;
+}
+/****** End Static Pages ******/

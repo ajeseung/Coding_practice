@@ -1,0 +1,6 @@
+
+if (typeof gotSegmentData != "undefined") {
+  gotSegmentData({"data": ["999997"]});
+};
+
+CN.ad.proximic.pxData = {"data": ["999997"]};

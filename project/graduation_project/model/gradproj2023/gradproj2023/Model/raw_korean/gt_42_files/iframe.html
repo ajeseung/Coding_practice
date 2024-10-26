@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- saved from url=(0082)https://cmp.dmgmediaprivacy.co.uk/2.0.0/html/iframe.html?mol.ads.cmp.log.level=off -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>MOL Ads CMP</title>
+  </head>
+  <body>
+    <script>
+      (function () {
+        function loadScript (name, attrs) {
+          var script = '../iife/' + name
+          attrs = attrs || []
+
+          if (
+            location.hostname.indexOf('localhost') !== 0 &&
+            location.hostname.indexOf('10.0.2.2') !== 0 &&
+            location.hostname.indexOf('127.0.0.1') !== 0
+          ) {
+            script += '.min'
+          }
+
+          var html = '<scr' + 'ipt src="' + script + '.js"'
+
+          for (var i = 0; i < attrs.length; i++) {
+            html += ' ' + attrs[i][0]
+
+            if (attrs[i][1]) {
+              html += '="' + attrs[i][1] + '"'
+            }
+          }
+
+          html += '></scr' + 'ipt>'
+
+          document.write(html)
+        }
+
+        loadScript('polyfill')
+        loadScript('mol-ads-cmp', [
+          ['id', 'mol-ads-cmp'],
+          ['data-api', 'backend']
+        ])
+      })()
+    </script><script src="./polyfill.min.js"></script><script src="./mol-ads-cmp.min.js" id="mol-ads-cmp" data-api="backend"></script>
+  
+
+</body></html>
