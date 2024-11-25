@@ -1,0 +1,1 @@
+googletag.impl.pubads.callbackProxy4([{"/112925372/mwn.mamamia.web/news/general-news/mary-kay-letourneaus-documentary-2018":["html",0,0,"",0,0,0,1,0,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0,null,null,null,null,null,null,"AOrYGslXqzWxZnMwa10HhsoG5C0a","CLKg0a-E4YIDFYxBDwIdmYsATw"]}]);

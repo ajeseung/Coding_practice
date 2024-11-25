@@ -1,0 +1,165 @@
+/* --------------------------------------------------------------------------------------------------------------------
+
+
+    247Sports Print Styles
+
+    Author: Adam DIllon
+    Created: 07/7/2011
+    Last Updated: 10/24/2016 (SWL)
+
+
+    Table of Contents
+
+    001. Typography
+    002. Layout
+    003. Objects
+
+
+-------------------------------------------------------------------------------------------------------------------- */
+
+
+
+/* 001. Typography
+---------------------------------------------------------------------------------------------------------------- */
+
+    * { float: none; font-size: 17px; color: #000; font-family: serif; padding: 0; margin: 0; overflow: auto; }
+
+    body { font-family: Georgia, serif; font-size: 17px; color: #000; margin: 0 auto; width: 100%; overflow: visible; background: none; }
+    h1 { font-size: 30px; line-height: 34px; letter-spacing: -1px; }
+    h2 { font-size: 27px; line-height: 31px; }
+    h3 { font-size: 23px; line-height: 27px; }
+    h4 { font-size: 20px; line-height: 24px; }
+    h5 { font-size: 17px; line-height: 21px; }
+    h1, h2, h3, h4, h5, h6 { color: #333; margin-bottom: 10px; font-weight: 800; }
+
+    p { line-height: 21px; margin-bottom: 10px; font-size: 17px; }
+
+    a:link, a:visited, a:focus, a:active { text-decoration: none; }
+
+    a { color: #004B82; }
+    .artcl_cntnt p { font-size: 17px; line-height: 21px; }
+
+
+
+/* 002. Layout
+---------------------------------------------------------------------------------------------------------------- */
+
+    .main, .main-header { max-width: 100%; }
+    body .main, body { width: 100%; margin: 0 !important; padding: 0 !important; background: none; max-width: 100%; }
+
+    body { padding: 20px 0; }
+
+        .main-header > h1 { width: 100%; margin-right: 0; float: none; }
+        .main-header > h1 > span { display: none; }
+
+        .metaftr_lst { border-top: 1px solid #ddd; margin-top: 0; width: 100%; color: #aaa; padding: 10px 0; }
+        .metaftr_lst li { margin-right: 5px; float: none; line-height: 14px; }
+
+        .add_cmmnt_icn, .comp.article .socialcmp_blk, .content.article > header > ul > li > .dropdown,
+        .main > .pg_cntnt > .sidebar, .cmmnt_qut, .user-nav .article-mini-nav,
+        .lnk_lst, a[href="#comments"], .discuss-form, .discuss > div > img,
+        .add_cmmnt, iframe, ul.usractions, .taboola_blk, .comment_frm, .page.article > aside,
+        ul.tools, .info, .usrtl, .auth_info, .commentnav_lst, .recirc-strip,
+        .network-bar, .dfp_ad, .scorestrip, .topnav, .adhesion-block { display: none; }
+
+    .small-menu, .header-wrapper, .main-header { background: none; box-shadow: none; }
+    .comp.article.main-content { width: 100%; margin: 0; padding: 0; float: none; border: none; overflow: visible; }
+
+    .header-wrapper, .main-header { height: 30px; padding: 0; }
+
+    .comp.article article { border: none; }
+
+    .main_content > .artcl_cntnt { width: 100%; overflow: visible; height: auto; }
+    .artcl_hdr { border-bottom: none; }
+
+    .pcollection_itm > a > span,
+    .hdr_skn3, .hdr_skn,
+    .brd_hdr.skn2,
+    .pmnav_lst,
+    .sidebar > p, .brd_bdy .comment_hdr,
+    .comment_lst .notification { background: none; }
+    .header-wrapper { position: relative; padding: 10px; }
+
+    a:link, a:visited { color: #00c; font-weight: 800; text-decoration: underline; }
+    .body.article a:link:after, #content a:visited:after { content: " (" attr(href) ") "; }
+    .authorinfo_lst > li { height: auto; }
+
+
+/* 003. Objects
+---------------------------------------------------------------------------------------------------------------- */
+
+    .discuss { /* width: 800px; page-break-before: always; */ display: none; }
+    .comment_lst > li { display: block; }
+    .premium_icn { background: none; display: none; float: none; height: 0; width: 0;  }
+
+    /* --  Headline -- */
+        .embedVideo, .watch-video-comp { display: none; }
+
+    /* -- Player Page -- */
+        .profile-edit, .socialcmp_blk, .hudl-comp, .profile-prediction-ticker,
+        .game-wrap, .timeline-comp, .yieldmo, .photos-comp, .quotes-comp, .playerstats-comp,
+        .headlines-comp, aside, .profile-header > .institution-block,
+        .ranking-info, .stats-comp, .admin-link, .college-list-item > .recruitedby,
+        .college-list-item > .posavail { display: none; }
+
+        .profile-header, .college-comp { background: none; }
+        .player-info > h2,
+        .player-info .location,
+        .player-info .position,
+        .comp > .comp-hdr > h2 { font-weight: 700; color: #000; line-height: normal; margin: 0; letter-spacing: 0; }
+        .player-info .position a { display: block; text-decoration: none; color: #000; margin: 5px 0; }
+        .profile-header .playerinfo_lst { width: auto; float: left; }
+        .profile-header p, .profile-header a, .profile-header li, .playerinfo_lst > li > b { font-weight: normal; color: #000; font-weight: normal; font-size: 16px; }
+        .playerinfo_lst > li > b { margin: 0; }
+        .playerinfo_lst > li > b:after { content: ":"; }
+
+        .profile-header .rating-ranking { margin: 0; }
+        .profile-header .twofourseven-ranking { clear: left; }
+        .profile-header .twofourseven-ranking .name { color: #000; font-weight: 700; font-size: 18px; text-align: left; display: block; margin-bottom: 3px; }
+        .profile-header .twofourseven-ranking > .top { float: left; margin-right: 77px; }
+        .profile-header .twofourseven-ranking > .top > .rating { color: #999; display: inline-block; }
+        .profile-header .twofourseven-ranking .twofourseven-stars .lightgrey { color: #ddd; margin-right: 3px; }
+        .profile-header .twofourseven-ranking .twofourseven-stars .yellow { color: #dbcb19; margin-right: 3px; }
+        .profile-header .twofourseven-ranking > .rankings { float: left; }
+        .profile-header .twofourseven-ranking > .rankings > a { text-decoration: none; width: 80px; margin-right: 10px; }
+        .profile-header .twofourseven-ranking > .rankings .rating { color: #000; font-size: 32px; }
+
+        .comp > .comp-hdr > h2 { float: none; }
+        .college-comp { padding: 0; }
+        .college-comp > .comp-bdy > p { display: none; }
+        .college-comp > .comp-hdr > ul { margin-top: 3px; }
+        .college-list-item > .school { margin-top: 15px; }
+        .college-list-item > .school > a { color: #000; text-decoration: none; vertical-align: middle; display: block; float: left; }
+        .college-list-item > .school > span { margin-top: 2px; display: block; }
+        .college-list-item > .school > .edit-link { display: none; }
+        .college-list-item > .visitdate { margin: 15px 15px 0 0; float: right; }
+        .college-list-item > .visitdate > a { text-decoration: none; font-weight: 700; }
+
+    /* -- Player Interests Page -- */
+        .main-content > header > .header_blk,
+        .main-content header > .socialbar_blk,
+        .recruit-interest-index_lst > li > img,
+        .recruit-interest-index_lst > li > div > .first_blk > .edit_anc,
+        .recruit-interest-index_lst > li > div > .secondary_blk .roster,
+        .recruit-interest-index_lst > li > .depthchart_blk.hidden { display: none; }
+        .recruit-interest-index_lst > li { padding: 10px 10px 0; }
+        .recruit-interest-index_lst .interest-details_lst { display: block; }
+        .recruit-interest-index_lst .interest-details_lst > li { margin: 0 10px 0 0; font-size: 12px; }
+        .recruit-interest-index_lst .interest-details_lst > li:first-of-type { font-size: 12px; }
+        .recruit-interest-index_lst > li > div > .first_blk { width: 200px; float: left; margin-right: 10px; }
+        .recruit-interest-index_lst > li > div > .first_blk > a { font-size: 18px; }
+        .recruit-interest-index_lst > li > div > .secondary_blk > span { font-size: 12px; }
+        .recruit-interest-index_lst .recruit-depth_lst { width: calc(100% / 5); font-size: 12px; }
+        .recruit-interest-index_lst > li > div > .secondary_blk,
+        .recruit-interest-index_lst .recruit-depth_lst:nth-of-type(5) { clear: none; }
+        .recruit-interest-index_lst > li > div { width: auto; }
+        .recruit-interest-index_lst .interest-details_lst > li > a { vertical-align: top; text-decoration: none; color: #000; }
+
+    /* -- Coach Page -- */
+        .coach .playerinfo_lst > li { float: none; }
+        .coach .player-team.coach { display: none; }
+        .coach aside { display: block; height: auto !important; }
+        .coach aside .videos-comp { display: none; }
+        .coach aside .coachjob-comp { margin-top: 20px; }
+        .coach aside .comp > .comp-hdr > h2 { font-size: 18px; }
+        .coach aside .comp > .comp-bdy { font-size: 13px; }

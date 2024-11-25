@@ -1,0 +1,9 @@
+Adform=window.Adform||{};
+Adform.host="https://track.adform.net";
+Adform.shost="https://s2.adform.net";
+Adform.scriptBase=Adform.shost+"/banners/scripts/";
+Adform.cache="630";
+Adform.ADFBannerData={"URL":"https://track.adform.net/adfserve/?bn=25152990;rtbwp=A74C9124E3A987AC;rtbdata=TWxYa5DhDwtXCXcF7iECZq1ako_fn6WFYir764CR7T4xgla2Ah4KgYtiIuLylXX9Kl1n6QWQ1CefIAchWxFL9gw04BBc4YwKs6W4xyEJ2MfRCJavBeiVCGNRa5qgYWT0nnDPS6vneanEmcJ-GrLhZJmvPRSUmjyruhP7zEBwIBdAKKEj-0Dak93oObAIqVVcmfwAxQWx9UlpcwbPWssHglCICNrgLWcZcw_YdDzrgYDOL_zfnNaTeAahQ8uukCCqul1dujd9xx_HarutjoHuCEwoeSudfCzO4i-XabWBjMYlyq9cIAxaFN7LakVHLQSSRt4RxEb7mrbVZw3i4gCENDOxZUO3_f4K6tqELWFDlB-4Gtbsy-30gatzGLuZJZlyhWVhM401Whpd5QDHtjzWAOFBboVeNKvP0;oobclicktrack=http%3a%2f%2fbeacon-nf.rubiconproject.com%2fbeacon%2fv2%2ft%2f0%2fca9b43d2-af03-4cc0-a6cd-77b1b9e7a6dc%2f","CREFURL":"http%3a%2f%2ftpc.googlesyndication.com%2f","BN":25152990,"READ_CONSENT":false};
+if(!Adform.ADFBannerParams)Adform.ADFBannerParams=[];
+Adform.ADFBannerParams.push(Adform.ADFBannerData);
+typeof Adform.ADFUtilInstance=="undefined"?document.write('<scr'+'ipt type="text/javascript" src="https://s2.adform.net/stoat/630/s2.adform.net/bootstrap.js"></scr'+'ipt>'):new Adform.ADFBanner();

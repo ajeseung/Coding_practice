@@ -1,0 +1,685 @@
+/*! This file is auto-generated */
+window.addComment=function(v){var I,C,h,E=v.document,b={commentReplyClass:"comment-reply-link",commentReplyTitleId:"reply-title",cancelReplyId:"cancel-comment-reply-link",commentFormId:"commentform",temporaryFormId:"wp-temp-form-div",parentIdFieldId:"comment_parent",postIdFieldId:"comment_post_ID"},e=v.MutationObserver||v.WebKitMutationObserver||v.MozMutationObserver,r="querySelector"in E&&"addEventListener"in v,n=!!E.documentElement.dataset;function t(){d(),e&&new e(o).observe(E.body,{childList:!0,subtree:!0})}function d(e){if(r&&(I=g(b.cancelReplyId),C=g(b.commentFormId),I)){I.addEventListener("touchstart",l),I.addEventListener("click",l);function t(e){if((e.metaKey||e.ctrlKey)&&13===e.keyCode)return C.removeEventListener("keydown",t),e.preventDefault(),C.submit.click(),!1}C&&C.addEventListener("keydown",t);for(var n,d=function(e){var t=b.commentReplyClass;e&&e.childNodes||(e=E);e=E.getElementsByClassName?e.getElementsByClassName(t):e.querySelectorAll("."+t);return e}(e),o=0,i=d.length;o<i;o++)(n=d[o]).addEventListener("touchstart",a),n.addEventListener("click",a)}}function l(e){var t,n,d=g(b.temporaryFormId);d&&h&&(g(b.parentIdFieldId).value="0",t=d.textContent,d.parentNode.replaceChild(h,d),this.style.display="none",n=(d=(d=g(b.commentReplyTitleId))&&d.firstChild)&&d.nextSibling,d&&d.nodeType===Node.TEXT_NODE&&t&&(n&&"A"===n.nodeName&&n.id!==b.cancelReplyId&&(n.style.display=""),d.textContent=t),e.preventDefault())}function a(e){var t=g(b.commentReplyTitleId),t=t&&t.firstChild.textContent,n=this,d=m(n,"belowelement"),o=m(n,"commentid"),i=m(n,"respondelement"),r=m(n,"postid"),n=m(n,"replyto")||t;d&&o&&i&&r&&!1===v.addComment.moveForm(d,o,i,r,n)&&e.preventDefault()}function o(e){for(var t=e.length;t--;)if(e[t].addedNodes.length)return void d()}function m(e,t){return n?e.dataset[t]:e.getAttribute("data-"+t)}function g(e){return E.getElementById(e)}return r&&"loading"!==E.readyState?t():r&&v.addEventListener("DOMContentLoaded",t,!1),{init:d,moveForm:function(e,t,n,d,o){var i,r,l,a,m,c,s,e=g(e),n=(h=g(n),g(b.parentIdFieldId)),y=g(b.postIdFieldId),p=g(b.commentReplyTitleId),u=(p=p&&p.firstChild)&&p.nextSibling;if(e&&h&&n){void 0===o&&(o=p&&p.textContent),a=h,m=b.temporaryFormId,c=g(m),s=(s=g(b.commentReplyTitleId))?s.firstChild.textContent:"",c||((c=E.createElement("div")).id=m,c.style.display="none",c.textContent=s,a.parentNode.insertBefore(c,a)),d&&y&&(y.value=d),n.value=t,I.style.display="",e.parentNode.insertBefore(h,e.nextSibling),p&&p.nodeType===Node.TEXT_NODE&&(u&&"A"===u.nodeName&&u.id!==b.cancelReplyId&&(u.style.display="none"),p.textContent=o),I.onclick=function(){return!1};try{for(var f=0;f<C.elements.length;f++)if(i=C.elements[f],r=!1,"getComputedStyle"in v?l=v.getComputedStyle(i):E.documentElement.currentStyle&&(l=i.currentStyle),(i.offsetWidth<=0&&i.offsetHeight<=0||"hidden"===l.visibility)&&(r=!0),"hidden"!==i.type&&!i.disabled&&!r){i.focus();break}}catch(e){}return!1}}}}(window);;
+/*!
+jQuery Waypoints - v1.1.7
+Copyright (c) 2011-2012 Caleb Troughton
+Dual licensed under the MIT license and GPL license.
+https://github.com/imakewebthings/jquery-waypoints/blob/master/MIT-license.txt
+https://github.com/imakewebthings/jquery-waypoints/blob/master/GPL-license.txt
+*/
+
+/*
+Waypoints is a small jQuery plugin that makes it easy to execute a function
+whenever you scroll to an element.
+
+GitHub Repository: https://github.com/imakewebthings/jquery-waypoints
+Documentation and Examples: http://imakewebthings.github.com/jquery-waypoints
+
+Changelog:
+	v1.1.7
+		- Actually fix the post-load bug in Issue #28 from v1.1.3.
+	v1.1.6
+		- Fix potential memory leak by unbinding events on empty context elements.
+	v1.1.5
+		- Make plugin compatible with Browserify/RequireJS. (Thanks @cjroebuck)
+	v1.1.4
+		- Add handler option to give alternate binding method. (Issue #34)
+	v1.1.3
+		- Fix cases where waypoints are added post-load and should be triggered
+		  immediately. (Issue #28)
+	v1.1.2
+		- Fixed error thrown by waypoints with triggerOnce option that were
+		  triggered via resize refresh.
+	v1.1.1
+		- Fixed bug in initialization where all offsets were being calculated
+		  as if set to 0 initially, causing unwarranted triggers during the
+		  subsequent refresh.
+		- Added onlyOnScroll, an option for individual waypoints that disables
+		  triggers due to an offset refresh that crosses the current scroll
+		  point. (All credit to @knuton on this one.)
+	v1.1
+		- Moved the continuous option out of global settings and into the options
+		  object for individual waypoints.
+		- Added the context option, which allows for using waypoints within any
+		  scrollable element, not just the window.
+	v1.0.2
+		- Moved scroll and resize handler bindings out of load.  Should play nicer
+		  with async loaders like Head JS and LABjs.
+		- Fixed a 1px off error when using certain % offsets.
+		- Added unit tests.
+	v1.0.1
+		- Added $.waypoints('viewportHeight').
+		- Fixed iOS bug (using the new viewportHeight method).
+		- Added offset function alias: 'bottom-in-view'.
+	v1.0
+		- Initial release.
+	
+Support:
+	- jQuery versions 1.4.3+
+	- IE6+, FF3+, Chrome 6+, Safari 4+, Opera 11
+	- Other versions and browsers may work, these are just the ones I've looked at.
+*/
+
+(function($, wp, wps, window, undefined){
+	'$:nomunge';
+	
+	var $w = $(window),
+	
+	// Keeping common strings as variables = better minification
+	eventName = 'waypoint.reached',
+	
+	/*
+	For the waypoint and direction passed in, trigger the waypoint.reached
+	event and deal with the triggerOnce option.
+	*/
+	triggerWaypoint = function(way, dir) {
+		way.element.trigger(eventName, dir);
+		if (way.options.triggerOnce) {
+			way.element[wp]('destroy');
+		}
+	},
+	
+	/*
+	Given a jQuery element and Context, returns the index of that element in the waypoints
+	array.  Returns the index, or -1 if the element is not a waypoint.
+	*/
+	waypointIndex = function(el, context) {
+		if (!context) return -1;
+		var i = context.waypoints.length - 1;
+		while (i >= 0 && context.waypoints[i].element[0] !== el[0]) {
+			i -= 1;
+		}
+		return i;
+	},
+	
+	// Private list of all elements used as scrolling contexts for waypoints.
+	contexts = [],
+	
+	/*
+	Context Class - represents a scrolling context.  Properties include:
+		element: jQuery object containing a single HTML element.
+		waypoints: Array of waypoints operating under this scroll context.
+		oldScroll: Keeps the previous scroll position to determine scroll direction.
+		didScroll: Flag used in scrolling the context's scroll event.
+		didResize: Flag used in scrolling the context's resize event.
+		doScroll: Function that checks for crossed waypoints. Called from throttler.
+	*/
+	Context = function(context) {
+		$.extend(this, {
+			element: $(context),
+			oldScroll: 0,
+			
+			/*
+			List of all elements that have been registered as waypoints.
+			Each object in the array contains:
+				element: jQuery object containing a single HTML element.
+				offset: The window scroll offset, in px, that triggers the waypoint event.
+				options: Options object that was passed to the waypoint fn function.
+			*/
+			'waypoints': [],
+			
+			didScroll: false,
+			didResize: false,
+	
+			doScroll: $.proxy(function() {
+				var newScroll = this.element.scrollTop(),
+				
+				// Are we scrolling up or down? Used for direction argument in callback.
+				isDown = newScroll > this.oldScroll,
+				that = this,
+
+				// Get a list of all waypoints that were crossed since last scroll move.
+				pointsHit = $.grep(this.waypoints, function(el, i) {
+					return isDown ?
+						(el.offset > that.oldScroll && el.offset <= newScroll) :
+						(el.offset <= that.oldScroll && el.offset > newScroll);
+				}),
+				len = pointsHit.length;
+				
+				// iOS adjustment
+				if (!this.oldScroll || !newScroll) {
+					$[wps]('refresh');
+				}
+
+				// Done with scroll comparisons, store new scroll before ejection
+				this.oldScroll = newScroll;
+
+				// No waypoints crossed? Eject.
+				if (!len) return;
+
+				// If several waypoints triggered, need to do so in reverse order going up
+				if (!isDown) pointsHit.reverse();
+
+				/*
+				One scroll move may cross several waypoints.  If the waypoint's continuous
+				option is true it should fire even if it isn't the last waypoint.  If false,
+				it will only fire if it's the last one.
+				*/
+				$.each(pointsHit, function(i, point) {
+					if (point.options.continuous || i === len - 1) {
+						triggerWaypoint(point, [isDown ? 'down' : 'up']);
+					}
+				});
+			}, this)
+		});
+		
+		// Setup scroll and resize handlers.  Throttled at the settings-defined rate limits.
+		$(context).bind('scroll.waypoints', $.proxy(function() {
+			if (!this.didScroll) {
+				this.didScroll = true;
+				window.setTimeout($.proxy(function() {
+					this.doScroll();
+					this.didScroll = false;
+				}, this), $[wps].settings.scrollThrottle);
+			}
+		}, this)).bind('resize.waypoints', $.proxy(function() {
+			if (!this.didResize) {
+				this.didResize = true;
+				window.setTimeout($.proxy(function() {
+					$[wps]('refresh');
+					this.didResize = false;
+				}, this), $[wps].settings.resizeThrottle);
+			}
+		}, this));
+		
+		$w.load($.proxy(function() {
+			/*
+			Fire a scroll check, should the page be loaded at a non-zero scroll value,
+			as with a fragment id link or a page refresh.
+			*/
+			this.doScroll();
+		}, this));
+	},
+	
+	/* Returns a Context object from the contexts array, given the raw HTML element
+	for that context. */
+	getContextByElement = function(element) {
+		var found = null;
+		
+		$.each(contexts, function(i, c) {
+			if (c.element[0] === element) {
+				found = c;
+				return false;
+			}
+		});
+		
+		return found;
+	},
+	
+	// Methods exposed to the effin' object 
+	methods = {
+		/*
+		jQuery.fn.waypoint([handler], [options])
+		
+		handler
+			function, optional
+			A callback function called when the user scrolls past the element.
+			The function signature is function(event, direction) where event is
+			a standard jQuery Event Object and direction is a string, either 'down'
+			or 'up' indicating which direction the user is scrolling.
+			
+		options
+			object, optional
+			A map of options to apply to this set of waypoints, including where on
+			the browser window the waypoint is triggered. For a full list of
+			options and their defaults, see $.fn.waypoint.defaults.
+			
+		This is how you register an element as a waypoint. When the user scrolls past
+		that element it triggers waypoint.reached, a custom event. Since the
+		parameters for creating a waypoint are optional, we have a few different
+		possible signatures. Let’s look at each of them.
+
+		someElements.waypoint();
+			
+		Calling .waypoint with no parameters will register the elements as waypoints
+		using the default options. The elements will fire the waypoint.reached event,
+		but calling it in this way does not bind any handler to the event. You can
+		bind to the event yourself, as with any other event, like so:
+
+		someElements.bind('waypoint.reached', function(event, direction) {
+		   // make it rain
+		});
+			
+		You will usually want to create a waypoint and immediately bind a function to
+		waypoint.reached, and can do so by passing a handler as the first argument to
+		.waypoint:
+
+		someElements.waypoint(function(event, direction) {
+		   if (direction === 'down') {
+		      // do this on the way down
+		   }
+		   else {
+		      // do this on the way back up through the waypoint
+		   }
+		});
+			
+		This will still use the default options, which will trigger the waypoint when
+		the top of the element hits the top of the window. We can pass .waypoint an
+		options object to customize things:
+
+		someElements.waypoint(function(event, direction) {
+		   // do something amazing
+		}, {
+		   offset: '50%'  // middle of the page
+		});
+			
+		You can also pass just an options object.
+
+		someElements.waypoint({
+		   offset: 100  // 100px from the top
+		});
+			
+		This behaves like .waypoint(), in that it registers the elements as waypoints
+		but binds no event handlers.
+
+		Calling .waypoint on an existing waypoint will extend the previous options.
+		If the call includes a handler, it will be bound to waypoint.reached without
+		unbinding any other handlers.
+		*/
+		init: function(f, options) {
+			// Register each element as a waypoint, add to array.
+			this.each(function() {
+				var cElement = $.fn[wp].defaults.context,
+				context,
+				$this = $(this);
+
+				// Default window context or a specific element?
+				if (options && options.context) {
+					cElement = options.context;
+				}
+
+				// Find the closest element that matches the context
+				if (!$.isWindow(cElement)) {
+					cElement = $this.closest(cElement)[0];
+				}
+				context = getContextByElement(cElement);
+
+				// Not a context yet? Create and push.
+				if (!context) {
+					context = new Context(cElement);
+					contexts.push(context);
+				}
+				
+				// Extend default and preexisting options
+				var ndx = waypointIndex($this, context),
+				base = ndx < 0 ? $.fn[wp].defaults : context.waypoints[ndx].options,
+				opts = $.extend({}, base, options);
+				
+				// Offset aliases
+				opts.offset = opts.offset === "bottom-in-view" ?
+					function() {
+						var cHeight = $.isWindow(cElement) ? $[wps]('viewportHeight')
+							: $(cElement).height();
+						return cHeight - $(this).outerHeight();
+					} : opts.offset;
+
+				// Update, or create new waypoint
+				if (ndx < 0) {
+					context.waypoints.push({
+						'element': $this,
+						'offset': null,
+						'options': opts
+					});
+				}
+				else {
+					context.waypoints[ndx].options = opts;
+				}
+				
+				// Bind the function if it was passed in.
+				if (f) {
+					$this.bind(eventName, f);
+				}
+				// Bind the function in the handler option if it exists.
+				if (options && options.handler) {
+					$this.bind(eventName, options.handler);
+				}
+			});
+			
+			// Need to re-sort+refresh the waypoints array after new elements are added.
+			$[wps]('refresh');
+			
+			return this;
+		},
+		
+		
+		/*
+		jQuery.fn.waypoint('remove')
+		
+		Passing the string 'remove' to .waypoint unregisters the elements as waypoints
+		and wipes any custom options, but leaves the waypoint.reached events bound.
+		Calling .waypoint again in the future would reregister the waypoint and the old
+		handlers would continue to work.
+		*/
+		remove: function() {
+			return this.each(function(i, el) {
+				var $el = $(el);
+				
+				$.each(contexts, function(i, c) {
+					var ndx = waypointIndex($el, c);
+
+					if (ndx >= 0) {
+						c.waypoints.splice(ndx, 1);
+
+						if (!c.waypoints.length) {
+							c.element.unbind('scroll.waypoints resize.waypoints');
+							contexts.splice(i, 1);
+						}
+					}
+				});
+			});
+		},
+		
+		/*
+		jQuery.fn.waypoint('destroy')
+		
+		Passing the string 'destroy' to .waypoint will unbind all waypoint.reached
+		event handlers on those elements and unregisters them as waypoints.
+		*/
+		destroy: function() {
+			return this.unbind(eventName)[wp]('remove');
+		}
+	},
+	
+	/*
+	Methods used by the jQuery object extension.
+	*/
+	jQMethods = {
+		
+		/*
+		jQuery.waypoints('refresh')
+		
+		This will force a recalculation of each waypoint’s trigger point based on
+		its offset option and context. This is called automatically whenever the window
+		(or other defined context) is resized, new waypoints are added, or a waypoint’s
+		options are modified. If your project is changing the DOM or page layout without
+		doing one of these things, you may want to manually call this refresh.
+		*/
+		refresh: function() {
+			$.each(contexts, function(i, c) {
+				var isWin = $.isWindow(c.element[0]),
+				contextOffset = isWin ? 0 : c.element.offset().top,
+				contextHeight = isWin ? $[wps]('viewportHeight') : c.element.height(),
+				contextScroll = isWin ? 0 : c.element.scrollTop();
+				
+				$.each(c.waypoints, function(j, o) {
+					/* $.each isn't safe from element removal due to triggerOnce.
+					Should rewrite the loop but this is way easier. */
+					if (!o) return;
+
+					// Adjustment is just the offset if it's a px value
+					var adjustment = o.options.offset,
+					oldOffset = o.offset;
+					
+					// Set adjustment to the return value if offset is a function.
+					if (typeof o.options.offset === "function") {
+						adjustment = o.options.offset.apply(o.element);
+					}
+					// Calculate the adjustment if offset is a percentage.
+					else if (typeof o.options.offset === "string") {
+						var amount = parseFloat(o.options.offset);
+						adjustment = o.options.offset.indexOf("%") ?
+							Math.ceil(contextHeight * (amount / 100)) : amount;
+					}
+
+					/* 
+					Set the element offset to the window scroll offset, less
+					all our adjustments.
+					*/
+					o.offset = o.element.offset().top - contextOffset
+						+ contextScroll - adjustment;
+
+					/*
+					An element offset change across the current scroll point triggers
+					the event, just as if we scrolled past it unless prevented by an
+					optional flag.
+					*/
+					if (o.options.onlyOnScroll) return;
+
+					if (oldOffset !== null && c.oldScroll > oldOffset && c.oldScroll <= o.offset) {
+						triggerWaypoint(o, ['up']);
+					}
+					else if (oldOffset !== null && c.oldScroll < oldOffset && c.oldScroll >= o.offset) {
+						triggerWaypoint(o, ['down']);
+					}
+					/* For new waypoints added after load, check that down should have
+					already been triggered */
+					else if (!oldOffset && c.element.scrollTop() > o.offset) {
+						triggerWaypoint(o, ['down']);
+					}
+				});
+				
+				// Keep waypoints sorted by offset value.
+				c.waypoints.sort(function(a, b) {
+					return a.offset - b.offset;
+				});
+			});
+		},
+		
+		
+		/*
+		jQuery.waypoints('viewportHeight')
+		
+		This will return the height of the viewport, adjusting for inconsistencies
+		that come with calling $(window).height() in iOS. Recommended for use
+		within any offset functions.
+		*/
+		viewportHeight: function() {
+			return (window.innerHeight ? window.innerHeight : $w.height());
+		},
+		
+		
+		/*
+		jQuery.waypoints()
+		
+		This will return a jQuery object with a collection of all registered waypoint
+		elements.
+
+		$('.post').waypoint();
+		$('.ad-unit').waypoint(function(event, direction) {
+		   // Passed an ad unit
+		});
+		console.log($.waypoints());
+		
+		The example above would log a jQuery object containing all .post and .ad-unit
+		elements.
+		*/
+		aggregate: function() {
+			var points = $();
+			$.each(contexts, function(i, c) {
+				$.each(c.waypoints, function(i, e) {
+					points = points.add(e.element);
+				});
+			});
+			return points;
+		}
+	};
+
+	
+	/*
+	fn extension.  Delegates to appropriate method.
+	*/
+	$.fn[wp] = function(method) {
+		
+		if (methods[method]) {
+			return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+		}
+		else if (typeof method === "function" || !method) {
+			return methods.init.apply(this, arguments);
+		}
+		else if (typeof method === "object") {
+			return methods.init.apply(this, [null, method]);
+		}
+		else {
+			$.error( 'Method ' + method + ' does not exist on jQuery ' + wp );
+		}
+	};
+	
+	
+	/*
+	The default options object that is extended when calling .waypoint. It has the
+	following properties:
+	
+	context
+		string | element | jQuery*
+		default: window
+		The context defines which scrollable element the waypoint belongs to and acts
+		within. The default, window, means the waypoint offset is calculated with relation
+		to the whole viewport.  You can set this to another element to use the waypoints
+		within that element.  Accepts a selector string, *but if you use jQuery 1.6+ it
+		also accepts a raw HTML element or jQuery object.
+	
+	continuous
+		boolean
+		default: true
+		If true, and multiple waypoints are triggered in one scroll, this waypoint will
+		trigger even if it is not the last waypoint reached.  If false, it will only
+		trigger if it is the last waypoint.
+		
+	handler
+		function
+		default: undefined
+		An alternative way to bind functions to the waypoint, without using the function
+		as the first argument to the waypoint function.
+
+	offset
+		number | string | function
+		default: 0
+		Determines how far the top of the element must be from the top of the browser
+		window to trigger a waypoint. It can be a number, which is taken as a number
+		of pixels, a string representing a percentage of the viewport height, or a
+		function that will return a number of pixels.
+		
+	onlyOnScroll
+		boolean
+		default: false
+		If true, this waypoint will not trigger if an offset change during a refresh
+		causes it to pass the current scroll point.
+		
+	triggerOnce
+		boolean
+		default: false
+		If true, the waypoint will be destroyed when triggered.
+	
+	An offset of 250 would trigger the waypoint when the top of the element is 250px
+	from the top of the viewport. Negative values for any offset work as you might
+	expect. A value of -100 would trigger the waypoint when the element is 100px above
+	the top of the window.
+
+	offset: '100%'
+	
+	A string percentage will determine the pixel offset based on the height of the
+	window. When resizing the window, this offset will automatically be recalculated
+	without needing to call $.waypoints('refresh').
+
+	// The bottom of the element is in view
+	offset: function() {
+	   return $.waypoints('viewportHeight') - $(this).outerHeight();
+	}
+	
+	Offset can take a function, which must return a number of pixels from the top of
+	the window. The this value will always refer to the raw HTML element of the
+	waypoint. As with % values, functions are recalculated automatically when the
+	window resizes. For more on recalculating offsets, see $.waypoints('refresh').
+	
+	An offset value of 'bottom-in-view' will act as an alias for the function in the
+	example above, as this is a common usage.
+	
+	offset: 'bottom-in-view'
+	
+	You can see this alias in use on the Scroll Analytics example page.
+
+	The triggerOnce flag, if true, will destroy the waypoint after the first trigger.
+	This is just a shortcut for calling .waypoint('destroy') within the waypoint
+	handler. This is useful in situations such as scroll analytics, where you only
+	want to record an event once for each page visit.
+	
+	The context option lets you use Waypoints within an element other than the window.
+	You can define the context with a selector string and the waypoint will act within
+	the nearest ancestor that matches this selector.
+	
+	$('.something-scrollable .waypoint').waypoint({
+	   context: '.something-scrollable'
+	});
+	
+	You can see this in action on the Dial Controls example.
+	
+	The handler option gives authors an alternative way to bind functions when
+	creating a waypoint.  In place of:
+	
+	$('.item').waypoint(function(event, direction) {
+	   // make things happen
+	});
+	
+	You may instead write:
+	
+	$('.item').waypoint({
+	   handler: function(event, direction) {
+	      // make things happen
+	   }
+	});
+	
+	*/
+	$.fn[wp].defaults = {
+		continuous: true,
+		offset: 0,
+		triggerOnce: false,
+		context: window
+	};
+	
+	
+	
+	
+	
+	/*
+	jQuery object extension. Delegates to appropriate methods above.
+	*/
+	$[wps] = function(method) {
+		if (jQMethods[method]) {
+			return jQMethods[method].apply(this);
+		}
+		else {
+			return jQMethods['aggregate']();
+		}
+	};
+	
+	
+	/*
+	$.waypoints.settings
+	
+	Settings object that determines some of the plugin’s behavior.
+		
+	resizeThrottle
+		number
+		default: 200
+		For performance reasons, the refresh performed during resizes is
+		throttled. This value is the rate-limit in milliseconds between resize
+		refreshes. For more information on throttling, check out Ben Alman’s
+		throttle / debounce plugin.
+		http://benalman.com/projects/jquery-throttle-debounce-plugin/
+		
+	scrollThrottle
+		number
+		default: 100
+		For performance reasons, checking for any crossed waypoints during a
+		scroll event is throttled. This value is the rate-limit in milliseconds
+		between scroll checks. For more information on throttling, check out Ben
+		Alman’s throttle / debounce plugin.
+		http://benalman.com/projects/jquery-throttle-debounce-plugin/
+	*/
+	$[wps].settings = {
+		resizeThrottle: 200,
+		scrollThrottle: 100
+	};
+	
+	$w.load(function() {
+		// Calculate everything once on load.
+		$[wps]('refresh');
+	});
+})(jQuery, 'waypoint', 'waypoints', window);
+;
+(function($){$.extend($.expr[":"],{"pmc-inview":function(element,index,match){var elementIsVisible=element.offsetHeight,elementPosition=element.getBoundingClientRect(),elementMiddlePosition=elementPosition.height/2+elementPosition.top;return elementIsVisible>0&&elementMiddlePosition>=0&&elementMiddlePosition<=window.innerHeight},"pmc-middle-child":function(element,index,match){var $items=$(element).parent().find(element.localName);if(3<=$items.length){return element===$items[Math.round($items.length/2)]}return false}})})(jQuery);
+;
+!function(factory){"function"==typeof define&&define.amd?define(["jquery"],factory):"object"==typeof exports?module.exports=factory(require("jquery")):factory(jQuery)}(function($){var inviewObjects=[],viewportSize,viewportOffset,d=document,w=window,documentElement=d.documentElement,timer;function getViewportSize(){var mode,domObject,size={height:w.innerHeight,width:w.innerWidth};return size.height||!(mode=d.compatMode)&&$.support.boxModel||(size={height:(domObject="CSS1Compat"===mode?documentElement:d.body).clientHeight,width:domObject.clientWidth}),size}function getViewportOffset(){return{top:w.pageYOffset||documentElement.scrollTop||d.body.scrollTop,left:w.pageXOffset||documentElement.scrollLeft||d.body.scrollLeft}}function checkInView(){if(inviewObjects.length){var i=0,$elements=$.map(inviewObjects,function(inviewObject){var selector=inviewObject.data.selector,$element=inviewObject.$element;return selector?$element.find(selector):$element});for(viewportSize=viewportSize||getViewportSize(),viewportOffset=viewportOffset||getViewportOffset();i<inviewObjects.length;i++)if($.contains(documentElement,$elements[i][0])){var $element=$($elements[i]),elementSize_height=$element[0].offsetHeight,elementSize_width=$element[0].offsetWidth,elementOffset=$element.offset(),inView=$element.data("inview");if(!viewportOffset||!viewportSize)return;elementOffset.top+elementSize_height>viewportOffset.top&&elementOffset.top<viewportOffset.top+viewportSize.height&&elementOffset.left+elementSize_width>viewportOffset.left&&elementOffset.left<viewportOffset.left+viewportSize.width?inView||$element.data("inview",!0).trigger("inview",[!0]):inView&&$element.data("inview",!1).trigger("inview",[!1])}}}$.event.special.inview={add:function(data){inviewObjects.push({data:data,$element:$(this),element:this}),!timer&&inviewObjects.length&&(timer=setInterval(checkInView,250))},remove:function(data){for(var i=0;i<inviewObjects.length;i++){var inviewObject=inviewObjects[i];if(inviewObject.element===this&&inviewObject.data.guid===data.guid){inviewObjects.splice(i,1);break}}inviewObjects.length||(clearInterval(timer),timer=null)}},$(w).on("scroll resize scrollstop",function(){viewportSize=viewportOffset=null}),!documentElement.addEventListener&&documentElement.attachEvent&&documentElement.attachEvent("onfocusin",function(){viewportOffset=null})});;
+/*! This file is auto-generated */
+!function(n,r){var t,e;"object"==typeof exports&&"undefined"!=typeof module?module.exports=r():"function"==typeof define&&define.amd?define("underscore",r):(n="undefined"!=typeof globalThis?globalThis:n||self,t=n._,(e=n._=r()).noConflict=function(){return n._=t,e})}(this,function(){var n="1.13.6",r="object"==typeof self&&self.self===self&&self||"object"==typeof global&&global.global===global&&global||Function("return this")()||{},e=Array.prototype,F=Object.prototype,V="undefined"!=typeof Symbol?Symbol.prototype:null,P=e.push,f=e.slice,s=F.toString,q=F.hasOwnProperty,t="undefined"!=typeof ArrayBuffer,u="undefined"!=typeof DataView,U=Array.isArray,W=Object.keys,z=Object.create,L=t&&ArrayBuffer.isView,$=isNaN,C=isFinite,K=!{toString:null}.propertyIsEnumerable("toString"),J=["valueOf","isPrototypeOf","toString","propertyIsEnumerable","hasOwnProperty","toLocaleString"],G=Math.pow(2,53)-1;function l(u,o){return o=null==o?u.length-1:+o,function(){for(var n=Math.max(arguments.length-o,0),r=Array(n),t=0;t<n;t++)r[t]=arguments[t+o];switch(o){case 0:return u.call(this,r);case 1:return u.call(this,arguments[0],r);case 2:return u.call(this,arguments[0],arguments[1],r)}for(var e=Array(o+1),t=0;t<o;t++)e[t]=arguments[t];return e[o]=r,u.apply(this,e)}}function o(n){var r=typeof n;return"function"==r||"object"==r&&!!n}function H(n){return void 0===n}function Q(n){return!0===n||!1===n||"[object Boolean]"===s.call(n)}function i(n){var r="[object "+n+"]";return function(n){return s.call(n)===r}}var X=i("String"),Y=i("Number"),Z=i("Date"),nn=i("RegExp"),rn=i("Error"),tn=i("Symbol"),en=i("ArrayBuffer"),a=i("Function"),r=r.document&&r.document.childNodes,p=a="function"!=typeof/./&&"object"!=typeof Int8Array&&"function"!=typeof r?function(n){return"function"==typeof n||!1}:a,r=i("Object"),un=u&&r(new DataView(new ArrayBuffer(8))),a="undefined"!=typeof Map&&r(new Map),u=i("DataView");var h=un?function(n){return null!=n&&p(n.getInt8)&&en(n.buffer)}:u,v=U||i("Array");function y(n,r){return null!=n&&q.call(n,r)}var on=i("Arguments"),an=(!function(){on(arguments)||(on=function(n){return y(n,"callee")})}(),on);function fn(n){return Y(n)&&$(n)}function cn(n){return function(){return n}}function ln(r){return function(n){n=r(n);return"number"==typeof n&&0<=n&&n<=G}}function sn(r){return function(n){return null==n?void 0:n[r]}}var d=sn("byteLength"),pn=ln(d),hn=/\[object ((I|Ui)nt(8|16|32)|Float(32|64)|Uint8Clamped|Big(I|Ui)nt64)Array\]/;var vn=t?function(n){return L?L(n)&&!h(n):pn(n)&&hn.test(s.call(n))}:cn(!1),g=sn("length");function yn(n,r){r=function(r){for(var t={},n=r.length,e=0;e<n;++e)t[r[e]]=!0;return{contains:function(n){return!0===t[n]},push:function(n){return t[n]=!0,r.push(n)}}}(r);var t=J.length,e=n.constructor,u=p(e)&&e.prototype||F,o="constructor";for(y(n,o)&&!r.contains(o)&&r.push(o);t--;)(o=J[t])in n&&n[o]!==u[o]&&!r.contains(o)&&r.push(o)}function b(n){if(!o(n))return[];if(W)return W(n);var r,t=[];for(r in n)y(n,r)&&t.push(r);return K&&yn(n,t),t}function dn(n,r){var t=b(r),e=t.length;if(null==n)return!e;for(var u=Object(n),o=0;o<e;o++){var i=t[o];if(r[i]!==u[i]||!(i in u))return!1}return!0}function m(n){return n instanceof m?n:this instanceof m?void(this._wrapped=n):new m(n)}function gn(n){return new Uint8Array(n.buffer||n,n.byteOffset||0,d(n))}m.VERSION=n,m.prototype.valueOf=m.prototype.toJSON=m.prototype.value=function(){return this._wrapped},m.prototype.toString=function(){return String(this._wrapped)};var bn="[object DataView]";function mn(n,r,t,e){var u;return n===r?0!==n||1/n==1/r:null!=n&&null!=r&&(n!=n?r!=r:("function"==(u=typeof n)||"object"==u||"object"==typeof r)&&function n(r,t,e,u){r instanceof m&&(r=r._wrapped);t instanceof m&&(t=t._wrapped);var o=s.call(r);if(o!==s.call(t))return!1;if(un&&"[object Object]"==o&&h(r)){if(!h(t))return!1;o=bn}switch(o){case"[object RegExp]":case"[object String]":return""+r==""+t;case"[object Number]":return+r!=+r?+t!=+t:0==+r?1/+r==1/t:+r==+t;case"[object Date]":case"[object Boolean]":return+r==+t;case"[object Symbol]":return V.valueOf.call(r)===V.valueOf.call(t);case"[object ArrayBuffer]":case bn:return n(gn(r),gn(t),e,u)}o="[object Array]"===o;if(!o&&vn(r)){var i=d(r);if(i!==d(t))return!1;if(r.buffer===t.buffer&&r.byteOffset===t.byteOffset)return!0;o=!0}if(!o){if("object"!=typeof r||"object"!=typeof t)return!1;var i=r.constructor,a=t.constructor;if(i!==a&&!(p(i)&&i instanceof i&&p(a)&&a instanceof a)&&"constructor"in r&&"constructor"in t)return!1}e=e||[];u=u||[];var f=e.length;for(;f--;)if(e[f]===r)return u[f]===t;e.push(r);u.push(t);if(o){if((f=r.length)!==t.length)return!1;for(;f--;)if(!mn(r[f],t[f],e,u))return!1}else{var c,l=b(r);if(f=l.length,b(t).length!==f)return!1;for(;f--;)if(c=l[f],!y(t,c)||!mn(r[c],t[c],e,u))return!1}e.pop();u.pop();return!0}(n,r,t,e))}function c(n){if(!o(n))return[];var r,t=[];for(r in n)t.push(r);return K&&yn(n,t),t}function jn(e){var u=g(e);return function(n){if(null==n)return!1;var r=c(n);if(g(r))return!1;for(var t=0;t<u;t++)if(!p(n[e[t]]))return!1;return e!==wn||!p(n[_n])}}var _n="forEach",r=["clear","delete"],u=["get","has","set"],U=r.concat(_n,u),wn=r.concat(u),t=["add"].concat(r,_n,"has"),u=a?jn(U):i("Map"),r=a?jn(wn):i("WeakMap"),U=a?jn(t):i("Set"),a=i("WeakSet");function j(n){for(var r=b(n),t=r.length,e=Array(t),u=0;u<t;u++)e[u]=n[r[u]];return e}function An(n){for(var r={},t=b(n),e=0,u=t.length;e<u;e++)r[n[t[e]]]=t[e];return r}function xn(n){var r,t=[];for(r in n)p(n[r])&&t.push(r);return t.sort()}function Sn(f,c){return function(n){var r=arguments.length;if(c&&(n=Object(n)),!(r<2||null==n))for(var t=1;t<r;t++)for(var e=arguments[t],u=f(e),o=u.length,i=0;i<o;i++){var a=u[i];c&&void 0!==n[a]||(n[a]=e[a])}return n}}var On=Sn(c),_=Sn(b),Mn=Sn(c,!0);function En(n){var r;return o(n)?z?z(n):((r=function(){}).prototype=n,n=new r,r.prototype=null,n):{}}function Bn(n){return v(n)?n:[n]}function w(n){return m.toPath(n)}function Nn(n,r){for(var t=r.length,e=0;e<t;e++){if(null==n)return;n=n[r[e]]}return t?n:void 0}function In(n,r,t){n=Nn(n,w(r));return H(n)?t:n}function Tn(n){return n}function A(r){return r=_({},r),function(n){return dn(n,r)}}function kn(r){return r=w(r),function(n){return Nn(n,r)}}function x(u,o,n){if(void 0===o)return u;switch(null==n?3:n){case 1:return function(n){return u.call(o,n)};case 3:return function(n,r,t){return u.call(o,n,r,t)};case 4:return function(n,r,t,e){return u.call(o,n,r,t,e)}}return function(){return u.apply(o,arguments)}}function Dn(n,r,t){return null==n?Tn:p(n)?x(n,r,t):(o(n)&&!v(n)?A:kn)(n)}function Rn(n,r){return Dn(n,r,1/0)}function S(n,r,t){return m.iteratee!==Rn?m.iteratee(n,r):Dn(n,r,t)}function Fn(){}function Vn(n,r){return null==r&&(r=n,n=0),n+Math.floor(Math.random()*(r-n+1))}m.toPath=Bn,m.iteratee=Rn;var O=Date.now||function(){return(new Date).getTime()};function Pn(r){function t(n){return r[n]}var n="(?:"+b(r).join("|")+")",e=RegExp(n),u=RegExp(n,"g");return function(n){return e.test(n=null==n?"":""+n)?n.replace(u,t):n}}var t={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#x27;","`":"&#x60;"},qn=Pn(t),t=Pn(An(t)),Un=m.templateSettings={evaluate:/<%([\s\S]+?)%>/g,interpolate:/<%=([\s\S]+?)%>/g,escape:/<%-([\s\S]+?)%>/g},Wn=/(.)^/,zn={"'":"'","\\":"\\","\r":"r","\n":"n","\u2028":"u2028","\u2029":"u2029"},Ln=/\\|'|\r|\n|\u2028|\u2029/g;function $n(n){return"\\"+zn[n]}var Cn=/^\s*(\w|\$)+\s*$/;var Kn=0;function Jn(n,r,t,e,u){return e instanceof r?(e=En(n.prototype),o(r=n.apply(e,u))?r:e):n.apply(t,u)}var M=l(function(u,o){function i(){for(var n=0,r=o.length,t=Array(r),e=0;e<r;e++)t[e]=o[e]===a?arguments[n++]:o[e];for(;n<arguments.length;)t.push(arguments[n++]);return Jn(u,i,this,this,t)}var a=M.placeholder;return i}),Gn=(M.placeholder=m,l(function(r,t,e){var u;if(p(r))return u=l(function(n){return Jn(r,u,t,this,e.concat(n))});throw new TypeError("Bind must be called on a function")})),E=ln(g);function B(n,r,t,e){if(e=e||[],r||0===r){if(r<=0)return e.concat(n)}else r=1/0;for(var u=e.length,o=0,i=g(n);o<i;o++){var a=n[o];if(E(a)&&(v(a)||an(a)))if(1<r)B(a,r-1,t,e),u=e.length;else for(var f=0,c=a.length;f<c;)e[u++]=a[f++];else t||(e[u++]=a)}return e}var Hn=l(function(n,r){var t=(r=B(r,!1,!1)).length;if(t<1)throw new Error("bindAll must be passed function names");for(;t--;){var e=r[t];n[e]=Gn(n[e],n)}return n});var Qn=l(function(n,r,t){return setTimeout(function(){return n.apply(null,t)},r)}),Xn=M(Qn,m,1);function Yn(n){return function(){return!n.apply(this,arguments)}}function Zn(n,r){var t;return function(){return 0<--n&&(t=r.apply(this,arguments)),n<=1&&(r=null),t}}var nr=M(Zn,2);function rr(n,r,t){r=S(r,t);for(var e,u=b(n),o=0,i=u.length;o<i;o++)if(r(n[e=u[o]],e,n))return e}function tr(o){return function(n,r,t){r=S(r,t);for(var e=g(n),u=0<o?0:e-1;0<=u&&u<e;u+=o)if(r(n[u],u,n))return u;return-1}}var er=tr(1),ur=tr(-1);function or(n,r,t,e){for(var u=(t=S(t,e,1))(r),o=0,i=g(n);o<i;){var a=Math.floor((o+i)/2);t(n[a])<u?o=a+1:i=a}return o}function ir(o,i,a){return function(n,r,t){var e=0,u=g(n);if("number"==typeof t)0<o?e=0<=t?t:Math.max(t+u,e):u=0<=t?Math.min(t+1,u):t+u+1;else if(a&&t&&u)return n[t=a(n,r)]===r?t:-1;if(r!=r)return 0<=(t=i(f.call(n,e,u),fn))?t+e:-1;for(t=0<o?e:u-1;0<=t&&t<u;t+=o)if(n[t]===r)return t;return-1}}var ar=ir(1,er,or),fr=ir(-1,ur);function cr(n,r,t){r=(E(n)?er:rr)(n,r,t);if(void 0!==r&&-1!==r)return n[r]}function N(n,r,t){if(r=x(r,t),E(n))for(u=0,o=n.length;u<o;u++)r(n[u],u,n);else for(var e=b(n),u=0,o=e.length;u<o;u++)r(n[e[u]],e[u],n);return n}function I(n,r,t){r=S(r,t);for(var e=!E(n)&&b(n),u=(e||n).length,o=Array(u),i=0;i<u;i++){var a=e?e[i]:i;o[i]=r(n[a],a,n)}return o}function lr(p){return function(n,r,t,e){var u=3<=arguments.length,o=n,i=x(r,e,4),a=t,f=!E(o)&&b(o),c=(f||o).length,l=0<p?0:c-1;for(u||(a=o[f?f[l]:l],l+=p);0<=l&&l<c;l+=p){var s=f?f[l]:l;a=i(a,o[s],s,o)}return a}}var sr=lr(1),pr=lr(-1);function T(n,e,r){var u=[];return e=S(e,r),N(n,function(n,r,t){e(n,r,t)&&u.push(n)}),u}function hr(n,r,t){r=S(r,t);for(var e=!E(n)&&b(n),u=(e||n).length,o=0;o<u;o++){var i=e?e[o]:o;if(!r(n[i],i,n))return!1}return!0}function vr(n,r,t){r=S(r,t);for(var e=!E(n)&&b(n),u=(e||n).length,o=0;o<u;o++){var i=e?e[o]:o;if(r(n[i],i,n))return!0}return!1}function k(n,r,t,e){return E(n)||(n=j(n)),0<=ar(n,r,t="number"==typeof t&&!e?t:0)}var yr=l(function(n,t,e){var u,o;return p(t)?o=t:(t=w(t),u=t.slice(0,-1),t=t[t.length-1]),I(n,function(n){var r=o;if(!r){if(null==(n=u&&u.length?Nn(n,u):n))return;r=n[t]}return null==r?r:r.apply(n,e)})});function dr(n,r){return I(n,kn(r))}function gr(n,e,r){var t,u,o=-1/0,i=-1/0;if(null==e||"number"==typeof e&&"object"!=typeof n[0]&&null!=n)for(var a=0,f=(n=E(n)?n:j(n)).length;a<f;a++)null!=(t=n[a])&&o<t&&(o=t);else e=S(e,r),N(n,function(n,r,t){u=e(n,r,t),(i<u||u===-1/0&&o===-1/0)&&(o=n,i=u)});return o}var br=/[^\ud800-\udfff]|[\ud800-\udbff][\udc00-\udfff]|[\ud800-\udfff]/g;function mr(n){return n?v(n)?f.call(n):X(n)?n.match(br):E(n)?I(n,Tn):j(n):[]}function jr(n,r,t){if(null==r||t)return(n=E(n)?n:j(n))[Vn(n.length-1)];for(var e=mr(n),t=g(e),u=(r=Math.max(Math.min(r,t),0),t-1),o=0;o<r;o++){var i=Vn(o,u),a=e[o];e[o]=e[i],e[i]=a}return e.slice(0,r)}function D(o,r){return function(t,e,n){var u=r?[[],[]]:{};return e=S(e,n),N(t,function(n,r){r=e(n,r,t);o(u,n,r)}),u}}var _r=D(function(n,r,t){y(n,t)?n[t].push(r):n[t]=[r]}),wr=D(function(n,r,t){n[t]=r}),Ar=D(function(n,r,t){y(n,t)?n[t]++:n[t]=1}),xr=D(function(n,r,t){n[t?0:1].push(r)},!0);function Sr(n,r,t){return r in t}var Or=l(function(n,r){var t={},e=r[0];if(null!=n){p(e)?(1<r.length&&(e=x(e,r[1])),r=c(n)):(e=Sr,r=B(r,!1,!1),n=Object(n));for(var u=0,o=r.length;u<o;u++){var i=r[u],a=n[i];e(a,i,n)&&(t[i]=a)}}return t}),Mr=l(function(n,t){var r,e=t[0];return p(e)?(e=Yn(e),1<t.length&&(r=t[1])):(t=I(B(t,!1,!1),String),e=function(n,r){return!k(t,r)}),Or(n,e,r)});function Er(n,r,t){return f.call(n,0,Math.max(0,n.length-(null==r||t?1:r)))}function Br(n,r,t){return null==n||n.length<1?null==r||t?void 0:[]:null==r||t?n[0]:Er(n,n.length-r)}function R(n,r,t){return f.call(n,null==r||t?1:r)}var Nr=l(function(n,r){return r=B(r,!0,!0),T(n,function(n){return!k(r,n)})}),Ir=l(function(n,r){return Nr(n,r)});function Tr(n,r,t,e){Q(r)||(e=t,t=r,r=!1),null!=t&&(t=S(t,e));for(var u=[],o=[],i=0,a=g(n);i<a;i++){var f=n[i],c=t?t(f,i,n):f;r&&!t?(i&&o===c||u.push(f),o=c):t?k(o,c)||(o.push(c),u.push(f)):k(u,f)||u.push(f)}return u}var kr=l(function(n){return Tr(B(n,!0,!0))});function Dr(n){for(var r=n&&gr(n,g).length||0,t=Array(r),e=0;e<r;e++)t[e]=dr(n,e);return t}var Rr=l(Dr);function Fr(n,r){return n._chain?m(r).chain():r}function Vr(t){return N(xn(t),function(n){var r=m[n]=t[n];m.prototype[n]=function(){var n=[this._wrapped];return P.apply(n,arguments),Fr(this,r.apply(m,n))}}),m}N(["pop","push","reverse","shift","sort","splice","unshift"],function(r){var t=e[r];m.prototype[r]=function(){var n=this._wrapped;return null!=n&&(t.apply(n,arguments),"shift"!==r&&"splice"!==r||0!==n.length||delete n[0]),Fr(this,n)}}),N(["concat","join","slice"],function(n){var r=e[n];m.prototype[n]=function(){var n=this._wrapped;return Fr(this,n=null!=n?r.apply(n,arguments):n)}});n=Vr({__proto__:null,VERSION:n,restArguments:l,isObject:o,isNull:function(n){return null===n},isUndefined:H,isBoolean:Q,isElement:function(n){return!(!n||1!==n.nodeType)},isString:X,isNumber:Y,isDate:Z,isRegExp:nn,isError:rn,isSymbol:tn,isArrayBuffer:en,isDataView:h,isArray:v,isFunction:p,isArguments:an,isFinite:function(n){return!tn(n)&&C(n)&&!isNaN(parseFloat(n))},isNaN:fn,isTypedArray:vn,isEmpty:function(n){var r;return null==n||("number"==typeof(r=g(n))&&(v(n)||X(n)||an(n))?0===r:0===g(b(n)))},isMatch:dn,isEqual:function(n,r){return mn(n,r)},isMap:u,isWeakMap:r,isSet:U,isWeakSet:a,keys:b,allKeys:c,values:j,pairs:function(n){for(var r=b(n),t=r.length,e=Array(t),u=0;u<t;u++)e[u]=[r[u],n[r[u]]];return e},invert:An,functions:xn,methods:xn,extend:On,extendOwn:_,assign:_,defaults:Mn,create:function(n,r){return n=En(n),r&&_(n,r),n},clone:function(n){return o(n)?v(n)?n.slice():On({},n):n},tap:function(n,r){return r(n),n},get:In,has:function(n,r){for(var t=(r=w(r)).length,e=0;e<t;e++){var u=r[e];if(!y(n,u))return!1;n=n[u]}return!!t},mapObject:function(n,r,t){r=S(r,t);for(var e=b(n),u=e.length,o={},i=0;i<u;i++){var a=e[i];o[a]=r(n[a],a,n)}return o},identity:Tn,constant:cn,noop:Fn,toPath:Bn,property:kn,propertyOf:function(r){return null==r?Fn:function(n){return In(r,n)}},matcher:A,matches:A,times:function(n,r,t){var e=Array(Math.max(0,n));r=x(r,t,1);for(var u=0;u<n;u++)e[u]=r(u);return e},random:Vn,now:O,escape:qn,unescape:t,templateSettings:Un,template:function(o,n,r){n=Mn({},n=!n&&r?r:n,m.templateSettings);var t,r=RegExp([(n.escape||Wn).source,(n.interpolate||Wn).source,(n.evaluate||Wn).source].join("|")+"|$","g"),i=0,a="__p+='";if(o.replace(r,function(n,r,t,e,u){return a+=o.slice(i,u).replace(Ln,$n),i=u+n.length,r?a+="'+\n((__t=("+r+"))==null?'':_.escape(__t))+\n'":t?a+="'+\n((__t=("+t+"))==null?'':__t)+\n'":e&&(a+="';\n"+e+"\n__p+='"),n}),a+="';\n",r=n.variable){if(!Cn.test(r))throw new Error("variable is not a bare identifier: "+r)}else a="with(obj||{}){\n"+a+"}\n",r="obj";a="var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};\n"+a+"return __p;\n";try{t=new Function(r,"_",a)}catch(n){throw n.source=a,n}function e(n){return t.call(this,n,m)}return e.source="function("+r+"){\n"+a+"}",e},result:function(n,r,t){var e=(r=w(r)).length;if(!e)return p(t)?t.call(n):t;for(var u=0;u<e;u++){var o=null==n?void 0:n[r[u]];void 0===o&&(o=t,u=e),n=p(o)?o.call(n):o}return n},uniqueId:function(n){var r=++Kn+"";return n?n+r:r},chain:function(n){return(n=m(n))._chain=!0,n},iteratee:Rn,partial:M,bind:Gn,bindAll:Hn,memoize:function(e,u){function o(n){var r=o.cache,t=""+(u?u.apply(this,arguments):n);return y(r,t)||(r[t]=e.apply(this,arguments)),r[t]}return o.cache={},o},delay:Qn,defer:Xn,throttle:function(t,e,u){function o(){l=!1===u.leading?0:O(),i=null,c=t.apply(a,f),i||(a=f=null)}function n(){var n=O(),r=(l||!1!==u.leading||(l=n),e-(n-l));return a=this,f=arguments,r<=0||e<r?(i&&(clearTimeout(i),i=null),l=n,c=t.apply(a,f),i||(a=f=null)):i||!1===u.trailing||(i=setTimeout(o,r)),c}var i,a,f,c,l=0;return u=u||{},n.cancel=function(){clearTimeout(i),l=0,i=a=f=null},n},debounce:function(r,t,e){function u(){var n=O()-i;n<t?o=setTimeout(u,t-n):(o=null,e||(f=r.apply(c,a)),o||(a=c=null))}var o,i,a,f,c,n=l(function(n){return c=this,a=n,i=O(),o||(o=setTimeout(u,t),e&&(f=r.apply(c,a))),f});return n.cancel=function(){clearTimeout(o),o=a=c=null},n},wrap:function(n,r){return M(r,n)},negate:Yn,compose:function(){var t=arguments,e=t.length-1;return function(){for(var n=e,r=t[e].apply(this,arguments);n--;)r=t[n].call(this,r);return r}},after:function(n,r){return function(){if(--n<1)return r.apply(this,arguments)}},before:Zn,once:nr,findKey:rr,findIndex:er,findLastIndex:ur,sortedIndex:or,indexOf:ar,lastIndexOf:fr,find:cr,detect:cr,findWhere:function(n,r){return cr(n,A(r))},each:N,forEach:N,map:I,collect:I,reduce:sr,foldl:sr,inject:sr,reduceRight:pr,foldr:pr,filter:T,select:T,reject:function(n,r,t){return T(n,Yn(S(r)),t)},every:hr,all:hr,some:vr,any:vr,contains:k,includes:k,include:k,invoke:yr,pluck:dr,where:function(n,r){return T(n,A(r))},max:gr,min:function(n,e,r){var t,u,o=1/0,i=1/0;if(null==e||"number"==typeof e&&"object"!=typeof n[0]&&null!=n)for(var a=0,f=(n=E(n)?n:j(n)).length;a<f;a++)null!=(t=n[a])&&t<o&&(o=t);else e=S(e,r),N(n,function(n,r,t){((u=e(n,r,t))<i||u===1/0&&o===1/0)&&(o=n,i=u)});return o},shuffle:function(n){return jr(n,1/0)},sample:jr,sortBy:function(n,e,r){var u=0;return e=S(e,r),dr(I(n,function(n,r,t){return{value:n,index:u++,criteria:e(n,r,t)}}).sort(function(n,r){var t=n.criteria,e=r.criteria;if(t!==e){if(e<t||void 0===t)return 1;if(t<e||void 0===e)return-1}return n.index-r.index}),"value")},groupBy:_r,indexBy:wr,countBy:Ar,partition:xr,toArray:mr,size:function(n){return null==n?0:(E(n)?n:b(n)).length},pick:Or,omit:Mr,first:Br,head:Br,take:Br,initial:Er,last:function(n,r,t){return null==n||n.length<1?null==r||t?void 0:[]:null==r||t?n[n.length-1]:R(n,Math.max(0,n.length-r))},rest:R,tail:R,drop:R,compact:function(n){return T(n,Boolean)},flatten:function(n,r){return B(n,r,!1)},without:Ir,uniq:Tr,unique:Tr,union:kr,intersection:function(n){for(var r=[],t=arguments.length,e=0,u=g(n);e<u;e++){var o=n[e];if(!k(r,o)){for(var i=1;i<t&&k(arguments[i],o);i++);i===t&&r.push(o)}}return r},difference:Nr,unzip:Dr,transpose:Dr,zip:Rr,object:function(n,r){for(var t={},e=0,u=g(n);e<u;e++)r?t[n[e]]=r[e]:t[n[e][0]]=n[e][1];return t},range:function(n,r,t){null==r&&(r=n||0,n=0),t=t||(r<n?-1:1);for(var e=Math.max(Math.ceil((r-n)/t),0),u=Array(e),o=0;o<e;o++,n+=t)u[o]=n;return u},chunk:function(n,r){if(null==r||r<1)return[];for(var t=[],e=0,u=n.length;e<u;)t.push(f.call(n,e,e+=r));return t},mixin:Vr,default:m});return n._=n});;
+!function($){window.blogherads=window.blogherads||{},window.blogherads.adq=window.blogherads.adq||[],window.pmc=window.pmc||{},window.pmc.analytics=window.pmc.analytics||[],window.pmc_ga_event_tracking="object"==typeof window.pmc_ga_event_tracking?window.pmc_ga_event_tracking:{};var device=window.pmc_ga_event_tracking.device||"[D]",events=window.pmc_ga_event_tracking.events||[],pmc_analytics=(window.pmc.event_tracking=function($element,action,category,label,details,url,nonInteraction,pre_events,event_value){var custom_ga_data="",href="",labelDetails="",custom_ga_data;pre_events=pre_events||[];try{(custom_ga_data=$element.attr("custom-ga-data"))&&(custom_ga_data=JSON.parse(custom_ga_data),Object.entries(custom_ga_data).forEach(function(entry){var key=entry[0],value=entry[1];if(value)switch(value=window.pmc.replace_wild_card($element,value),key){case"category":void 0!==category&&category||(category=value);break;case"details":void 0!==details&&details||(details=value);break;case"label":void 0!==label&&label||(label=value);break;case"product":window.pmc.maybe_load_ga_plugin("ec"),window.pmc.maybe_set_ga_pre_events(pre_events,["ec:addProduct",value,1]),window.pmc.maybe_set_ga_pre_events(pre_events,["ec:setAction","click",{list:"article"}]);break;case"url":void 0!==url&&url||(url=value);break;default:window.pmc.maybe_set_ga_property(key,value)}}))}catch(e){console.log("Custom Tracking Event Error: "+e)}details&&(labelDetails=(labelDetails="string"==typeof details?details:$.trim($element.text()).replace(/(\r?\n|\r)/gm," ").replace(/\s{2,}/g," ")).length?" ("+(labelDetails=labelDetails.substring(0,15))+")":""),label=void 0===label||pmc.is_empty(label)?apply_filters("pmc-google-analytics-tracking-label","",$element):window.pmc.replace_wild_card($element,label),url&&(href="string"==typeof url&&url.length?" "+url:"string"==typeof(href=$element.attr("href"))&&href.length?2===(href=href.split(/\/\/(.+)?/,2)).length?" "+href[1]:" "+href[0]:""),category=window.pmc.replace_wild_card($element,category),pre_events=pre_events&&window.pmc.replace_wild_card($element,pre_events),"click"===action&&(custom_ga_data=window.pmc.get_ga_mapped_data("page-type"))&&"article"===custom_ga_data.value&&(window.pmc.maybe_set_ga_property("id",!0),window.pmc.maybe_set_ga_property("location",!0));var custom_ga_data={hitType:"event",eventCategory:category,eventAction:action,eventLabel:device+" "+label+labelDetails+href,nonInteraction:!!nonInteraction},nonInteraction={eventCategory:category,eventAction:action,eventLabel:device+" "+label+labelDetails+href};"number"==typeof event_value&&(custom_ga_data.eventValue=event_value,nonInteraction.eventValue=event_value);try{if(pre_events&&pre_events.length)for(var i in pre_events)ga.apply(this,pre_events[i]);custom_ga_data=apply_filters("pmc-google-analytics-tracking-events",custom_ga_data,$element),nonInteraction.eventCategory=String((custom_ga_data?.eventCategory?custom_ga_data:nonInteraction).eventCategory).substring(0,99),nonInteraction.eventAction=String((custom_ga_data?.eventAction?custom_ga_data:nonInteraction).eventAction).substring(0,99),nonInteraction.eventLabel=String((custom_ga_data?.eventLabel?custom_ga_data:nonInteraction).eventLabel).substring(0,99),nonInteraction.eventValue=String((custom_ga_data?.eventValue?custom_ga_data:nonInteraction).eventValue).substring(0,99);var ga4EventName=String(nonInteraction.eventCategory+"-"+nonInteraction.eventAction).substring(0,39);ga("send",custom_ga_data),gtag("event",ga4EventName,nonInteraction)}catch(err){console.log("Event Tracking Error: "+err)}return custom_ga_data},$.fn.eventTracking=function(atts){var selector,contentConsumed,pageOpenedTime,action,category,details,iframe,label,nonInteraction,pre_events,url;this&&"object"==typeof atts&&(selector=this.selector||atts.selector,contentConsumed=!1,pageOpenedTime=(new Date).getTime(),action=atts.action||"click",category=atts.category||"",details=atts.details||!1,iframe=atts.iframe||!1,label=atts.label||"",nonInteraction=atts.nonInteraction||!1,pre_events=atts.pre_events||[],url=atts.url||!1,iframe?"string"==typeof iframe&&$(iframe).load(function(){$(iframe).contents().on(action,selector,function(e){e.stopPropagation(),window.pmc.event_tracking($(this),action,category,label,details,url,nonInteraction,pre_events)})}):"inview"===action?$(selector).each(function(){var self=this;$(this).one("inview",function(event,isInView){var inview_element=this;isInView&&window.pmc.event_tracking($(this),action,category,label,details,url,nonInteraction,pre_events)})}):"content-consumed"===action?$(document).scroll(_.debounce(function(e){var currentTime;$(selector).is(":pmc-inview")&&!contentConsumed&&3e3<=(new Date).getTime()-pageOpenedTime&&(e.stopPropagation(),window.pmc.event_tracking($(this),action,category,label,details,url,nonInteraction,pre_events),contentConsumed=!0)},300)):"dfp-ad-clicks"===action?"undefined"!=typeof googletag&&googletag.cmd.push(function(){googletag.pubads().addEventListener("slotRenderEnded",function(event){var slot_name=event.slot.getName(),$ad_iframe=$('iframe[id*="'+slot_name+'"]'),$ad_iframe_container=$ad_iframe.parents(".admz"),_event=event;$ad_iframe.contents().find("body a").each(function(){$(this).click(function(){for(var ad_url=$(this).attr("href").split("?")[1].split("&"),i=0;i<ad_url.length;i++){var kv=ad_url[i].split("=");if("adurl"===kv[0]){ad_url=decodeURIComponent(kv[1]);break}}action="click",category="DFP Ad Click",label={location:$ad_iframe_container.attr("id"),oid:_event.campaignId,liid:_event.lineItemId,cid:_event.creativeId,to_url:ad_url},window.pmc&&window.pmc.hooks&&window.pmc.hooks.apply_filters&&(label=window.pmc.hooks.apply_filters("pmc-google-universal-analytics-dfp-event-label-array",label,$ad_iframe.contents(),slot_name,_event)),label=window.JSON.stringify(label),window.pmc.event_tracking($(this),action,category,label,details,url,nonInteraction,pre_events),window.pmc&&window.pmc.hooks&&window.pmc.hooks.do_action&&window.pmc.hooks.do_action("pmc-google-universal-analytics-dfp-ad-clicks-pre-events",pre_events,ad_url)})})})}):$(document).on(action,selector,function(e){e.stopPropagation(),window.pmc.event_tracking($(this),action,category,label,details,url,nonInteraction,pre_events)}))},window.pmc.maybe_load_ga_plugin=function(plugin){window.pmc.ga_plugin_loaded=window.pmc.ga_plugin_loaded||{},window.pmc.ga_plugin_loaded[plugin]||(ga("require",plugin),window.pmc.ga_plugin_loaded[plugin]=!0)},window.pmc.maybe_set_ga_property=function(key,value){if(value)try{var data=window.pmc.get_ga_mapped_data(key),old_value;"boolean"==typeof value&&(value=value&&(!(!data||!data.value)&&data.value)),data&&data.key&&value&&(old_value=void 0,(old_value=window.pmc.ga_tracker_instance?window.pmc.ga_tracker_instance.get(data.key):old_value)!=value)&&value&&ga("set",data.key,value)}catch(err){console.log("maybe_set_ga_property Error: "+err)}},window.pmc.maybe_merge_fields=function(data,merge_with){try{merge_with&&"object"==typeof merge_with&&Object.entries(merge_with).forEach(function(entry){var key=entry[0],entry=entry[1];!data[key]&&entry?data[key]=entry:"object"==typeof data[key]&&"object"==typeof entry&&(data[key]=window.pmc.maybe_merge_fields(data[key],entry))})}catch(e){console.log("Error: maybe_merge_fields - "+e)}return data},window.pmc.maybe_set_ga_pre_events=function(pre_events,data){try{for(var i in pre_events){var event=pre_events[i];if(event[0]===data[0])switch(event[0]){case"ec:addProduct":case"ec:setAction":return pre_events[i][1]=window.pmc.maybe_merge_fields(pre_events[i][1],data[1]),pre_events}}pre_events.push(data)}catch(e){console.log("Error: maybe_set_ga_pre_events - "+e)}return pre_events},window.pmc.get_ga_mapped_data=function(key){var dimension=!1,value=!1,utms;return"location"===key?{key:key,value:value=(value=(value=pmc&&pmc.tracking&&""!==(utms=pmc.tracking.get_properties_string())?window.location.href.split("#")[0]+(window.location.search?"&":"?")+utms:value)||((query=document.querySelector("link[rel='canonical']"))?query.href:value))||document.location.href}:(key.match(/^dimension\d+/)?dimension=key:window.pmc_ga_mapped_dimensions&&window.pmc_ga_mapped_dimensions[key]&&(dimension="dimension"+window.pmc_ga_mapped_dimensions[key]),!!dimension&&{key:dimension,value:value=window.pmc_ga_dimensions&&window.pmc_ga_dimensions[dimension]?window.pmc_ga_dimensions[dimension]:value})},window.pmc.replace_wild_card=function($selector,event_attr){if(null!==event_attr){if(event_attr instanceof Array){var attributes=[],i;for(i in event_attr)attributes[i]=window.pmc.replace_wild_card($selector,event_attr[i]);return attributes}var attributes,regex;if("object"==typeof event_attr)return attributes={},Object.keys(event_attr).forEach(function(key){attributes[key]=window.pmc.replace_wild_card($selector,event_attr[key])}),attributes;if("string"==typeof event_attr&&null!==(data_attr=/%=(.*)=%/.exec(event_attr))){var attr=$selector.attr(data_attr[1]);if(void 0!==attr&&!1!==attr&&""!==attr)return attr;var match=data_attr[1].match(/^ga-map-(key|value)-(.+)/);if(match){if(attr=window.pmc.get_ga_mapped_data(match[2]))switch(match[1]){case"key":if(attr.key)return attr.key;break;case"value":if(attr.value)return attr.value}}else if((attr=window.pmc.get_ga_mapped_data(data_attr[1]))&&attr.value)return attr.value}}return event_attr},{push:function(cmd){if("function"==typeof cmd)try{cmd()}catch(e){}},track_pageview:function(url){var pvuuid=pmc.generate_pvuuid(!0),sendVirtualPageview=()=>{var activeConsentGroups,ga3Dimensions,activeConsentGroups,pvuuid_dim;getGA3Dimensions&&getGA4Dimensions&&(activeConsentGroups=window.pmc_onetrust_helpers?.getActiveConsentGroups?.()||[],ga3Dimensions=getGA3Dimensions(activeConsentGroups),activeConsentGroups=getGA4Dimensions(activeConsentGroups),"undefined"!=typeof pmc_ga_mapped_dimensions&&"undefined"!=typeof pmc_ga_dimensions&&pmc_ga_mapped_dimensions["pageview-id"]&&(ga3Dimensions[pvuuid_dim="dimension"+pmc_ga_mapped_dimensions["pageview-id"].toString()]=pvuuid,pmcGaCustomDimensions[pvuuid_dim]=pvuuid,ga("set",ga3Dimensions)),ga("send","pageview",url),window.dataLayer=window.dataLayer||[],window.dataLayer.push({event:"VirtualPageView","pageview-type":"virtual_page","pageview-id":pvuuid,...activeConsentGroups}))};window.pmcGATriggered?sendVirtualPageview():pmc.hooks.add_action("pmc_ga_triggered",sendVirtualPageview),blogherads.adq.push(function(){try{blogherads.setPageMetaData(window.pmc_fpd||{}),blogherads.trackPageView(!0)}catch(e){}})}}),pmc_analytics_queues=(pmc.hooks.add_filter("pmc_event_tracking_social_data",function(socialEvent,socialNetwork){if(events.length<=0||null===socialNetwork)return null;var socialNetwork=socialNetwork.toLowerCase(),selector="pinit"===socialNetwork?".btn-pinterest":".btn-"+socialNetwork,index=null,socialNetwork;if(null===socialEvent)for(var i=0;i<events.length;i++)if(events[i].selector===selector){index=i;break}return socialEvent=null!==index?{hitType:"event",eventCategory:(socialNetwork=events[index]).category,eventAction:socialNetwork.action,eventLabel:device+" "+socialNetwork.label,nonInteraction:socialNetwork.nonInteraction}:socialEvent}),window.pmc.ga_tracker_instance||"function"==typeof ga&&ga(function(tracker){window.pmc.ga_tracker_instance=tracker}),pmc.analytics);pmc.analytics=pmc_analytics,pmc_analytics_queues&&Array.isArray(pmc_analytics_queues)&&pmc_analytics_queues.length&&pmc_analytics_queues.forEach(function(cmd){pmc_analytics.push(cmd)});for(var i=0;i<events.length;i++)try{var e=events[i];$(e.selector).eventTracking(e)}catch(err){console.log("Event Tracking Error: "+err)}}(jQuery);;

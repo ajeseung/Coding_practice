@@ -1,0 +1,1 @@
+define(["libs/react/v16.12.0/react.production.min"],function(n){return n});

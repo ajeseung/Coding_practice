@@ -1,0 +1,4 @@
+/*! updated; 11-16-2023 03:01 PM **/
+
+
+!function(n){function o(n){return localStorage.getItem(n)}function r(n,i){return localStorage.setItem(n,i),i}function i(n){localStorage.removeItem(n)}function t(n,i,t){if(!t){t=o(n);return r(n,!!t?t:!!i?i:"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,function(n){var i=16*Math.random()|0;return("x"===n?i:3&i|8).toString(16)}))}}var e={anon_fpid:function(){return o("anon_fpid")},persist_fpid:function(){return o("persist_fpid")},persist_prev:function(){return o("persist_prev")},afpid_log:function(){return o("afpid_log")},updateAnon:function(n){n&&!o("persist_fpid")?(r("persist_fpid",o("anon_fpid")),i("anon_fpid")):n&&o("anon_fpid")?i("anon_fpid"):n||t("anon_fpid",o("persist_fpid"),!1),r("afpid_log",n)},initialized:!1};n.FNC=n.FNC||{},!n.FNC||n.FNC.anon||n.top!=n.self||(console.log("running anon script injection"),n.FNC.anon=n.FNC.anon||(e=e,t("anon_fpid",o("persist_fpid"),o("afpid_log")),e.initialized=!0,e))}(window);
