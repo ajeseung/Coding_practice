@@ -1,9 +1,0 @@
-/**/ gig_pc_facebook_1538468282384_8628726930523696({
-   "error": {
-      "message": "(#2) Service temporarily unavailable",
-      "type": "OAuthException",
-      "is_transient": true,
-      "code": 2,
-      "fbtrace_id": "Afn34DhR7g9yasbXUo0ZGUG"
-   }
-});
