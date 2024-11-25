@@ -1,8 +1,0 @@
-#lang racket
-(provide (all-defined-out))
-
-(define check_bst )
-
-(define apply)
-
-(define equals)
