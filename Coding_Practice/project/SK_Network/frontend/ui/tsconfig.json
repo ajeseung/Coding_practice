@@ -1,0 +1,15 @@
+{
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "lib": ["ESNext", "DOM"],
+    "types": ["@nuxt/types", "vite/client"],
+    "target": "ESNext"
+  },
+  "include": ["nuxt.config.ts", "components/**/*.vue", "plugins/**/*.ts"]
+}

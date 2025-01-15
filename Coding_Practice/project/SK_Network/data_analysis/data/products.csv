@@ -1,0 +1,31 @@
+ProductID,ProductName,Category,Price (KRW)
+885a6a4d-ba6c-40cd-b70d-d62d4a077db1,Cass,Beer,1400
+207539df-41ad-42e8-a71b-3a11aaf1b585,Terra,Beer,1980
+b840920a-356d-42d0-87d7-f8913fbaefaa,Asahi,Beer,3000
+1bf89619-4141-4c4a-bf82-469fd5fcc874,Corona,Beer,2650
+6c7cf5c9-d664-4a4f-8a9a-625fe2ff6049,Tiger,Beer,3000
+d4ec47bc-08f7-43f4-9885-3be43405262b,Sapporo,Beer,3000
+db77c32b-b1e4-4e31-a6ee-2bca4c50bc8f,Kirin Ichibang,Beer,3000
+3b0404b9-133f-4eba-a97e-4cd22d504828,Hite,Beer,2170
+54c6a5eb-1918-45cd-91aa-374473471844,Kelly,Beer,2170
+3ccff63d-460d-467b-9858-a45076fe497e,Guinness,Beer,3000
+a5f458f9-8d39-48ad-a0cb-66e4f7852f07,Ruffino Lumina Pinot Grigio,Wine,39000
+8d5e7213-65e7-427e-aa32-5fa78503f727,Meiomi Pinot Noir,Wine,90000
+2d04110a-503a-4ed3-91c2-670e51784f65,Bontara Merlot,Wine,65000
+d681ed82-99b9-4644-a2d9-13572adc134a,Sonoma Estate Cabernet Sauvignon,Wine,85000
+994430f1-44b4-484e-8124-8a3a0ea7a03f,19 Crimes Red Blend,Wine,67200
+3141b17b-4443-4c0c-ad2c-b451397dd8b8,David's Nadia Chenin Blanc 2017,Wine,61800
+6e415539-41b8-477c-866c-ed432ca9c191,100 Hectares Grande Reserva Branco,Wine,60000
+d07607cf-fe0d-46a3-a937-95d2b2fd3c2f,Gunderloch Riesling Royal Blue,Wine,85000
+4e265019-e973-49e0-af0f-a027e4ebf349,Fleur de Mer Rosé,Wine,36000
+41566265-df60-49bb-a3c6-dcea014b35b6,Louis Jadot Bourgogne Chardonnay,Wine,35000
+82c99ea7-94c2-4ce6-8ab3-81abd779df46,Ballantine's 12 Year,Whiskey,49000
+666ab3dc-cd20-41bd-817c-d0103cecf529,Ballantine's 21 Year,Whiskey,177000
+4519177f-172f-4070-9d2d-31dcda00c95a,Ballantine's 30 Year,Whiskey,524900
+9bd08e02-9822-40e2-bad0-ce7c74ec13c8,Glenfiddich 12 Year,Whiskey,67500
+31b4fb8f-a71b-43ac-abcd-4f357390738b,Glenfiddich 21 Year,Whiskey,279000
+490bc694-4873-4f8c-89dd-804c9a09843e,Glenfiddich 30 Year,Whiskey,1250000
+f45e98c4-a031-4ffc-85ce-60f0188aca25,Johnnie Walker Green Label,Whiskey,69000
+0c2e4efc-da55-4f14-a208-fae43756fad6,Johnnie Walker Black Label,Whiskey,39000
+897111bf-edf0-4ce2-a88b-6db73fdf81ac,Johnnie Walker Blue Label,Whiskey,338000
+8dbffd8a-bd16-45f3-b1e0-36059037bcde,Johnnie Walker Red Label,Whiskey,22000
